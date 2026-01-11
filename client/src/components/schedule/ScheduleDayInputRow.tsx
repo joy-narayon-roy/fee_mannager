@@ -64,55 +64,59 @@ export default function ScheduleDayInputRow(props: Props) {
 
     return (
         <div
-            className={`flex items-center gap-4 p-3 rounded-lg border
+            className={`flex flex-wrap items-center justify-between md:justify-start gap-4 p-3 rounded-lg border w-fill
             ${selectedDay
                     ? "border-indigo-300 bg-indigo-50"
                     : "border-gray-200 bg-gray-50"
                 }`}
         >
+            <div className="flex items-center gap-2">
             {/* Checkbox */}
-            <input
-                type="checkbox"
-                checked={selectedDay !== undefined}
-                onChange={handelSelect}
-                // onChange={() => toggleDay(d.key)}
-                className="h-4 w-4 accent-indigo-600"
-            />
+                <input
+                    type="checkbox"
+                    checked={selectedDay !== undefined}
+                    onChange={handelSelect}
+                    // onChange={() => toggleDay(d.key)}
+                    className="h-4 w-4 accent-indigo-600"
+                />
 
-            {/* Day */}
-            <div className="w-12 text-sm font-semibold text-gray-700">
-                {day.label}
+                {/* Day */}
+                <div className="w-12 text-sm font-semibold text-gray-700">
+                    {day.label}
+                </div>
             </div>
 
-            {/* Start time */}
-            <input
-                type="time"
-                name={`${day.key}-start_time`}
-                disabled={!selectedDay}
-                value={to24Hour(selectedDay?.start_time || '')}
-                onChange={(e) =>
-                    updateTime(`${day.key}-start_time`, to12Hour(e.target.value))
-                }
-                placeholder="3:00 PM"
-                className="w-32 rounded-md border border-gray-300 px-2 py-1 text-sm disabled:bg-gray-100"
-            />
+            <div className="flex flex-row items-center gap-2">
+                {/* Start time */}
+                <input
+                    type="time"
+                    name={`${day.key}-start_time`}
+                    disabled={!selectedDay}
+                    value={to24Hour(selectedDay?.start_time || '')}
+                    onChange={(e) =>
+                        updateTime(`${day.key}-start_time`, to12Hour(e.target.value))
+                    }
+                    placeholder="3:00 PM"
+                    className="w-32 rounded-md border border-gray-300 px-2 py-1 text-sm disabled:bg-gray-100"
+                />
 
-            <span className="text-xs text-gray-500">to</span>
+                <span className="text-xs text-gray-500">to</span>
 
-            {/* End time */}
-            <input
-                type="time"
-                name={`${day.key}-end_time`}
-                disabled={!selectedDay}
-                value={to24Hour(selectedDay?.end_time || '')}
-                onChange={(e) => {
-                    updateTime(`${day.key}-end_time`, to12Hour(e.target.value))
-                }
-                }
-                placeholder="4:00 PM"
-                className="w-32 rounded-md border border-gray-300 px-2 py-1 text-sm disabled:bg-gray-100"
-            />
+                {/* End time */}
+                <input
+                    type="time"
+                    name={`${day.key}-end_time`}
+                    disabled={!selectedDay}
+                    value={to24Hour(selectedDay?.end_time || '')}
+                    onChange={(e) => {
+                        updateTime(`${day.key}-end_time`, to12Hour(e.target.value))
+                    }
+                    }
+                    placeholder="4:00 PM"
+                    className="w-32 rounded-md border border-gray-300 px-2 py-1 text-sm disabled:bg-gray-100"
+                />
             <span className=" text-xs opacity-70"></span>
+            </div>
         </div>
     );
 }

@@ -3,6 +3,7 @@ import styles from "./styles/mainlayout.module.css";
 import NavItem from "./NavItem";
 import { useState } from "react";
 import { HiBars3 } from "react-icons/hi2";
+import { useBreakpoint } from "../../hooks/useBreakpoint";
 
 const MainLayout = () => {
     const navItems = [
@@ -11,8 +12,15 @@ const MainLayout = () => {
         { text: "Schedule", path: "/schedule" },
         { text: "Summary", path: "/summary" },
     ];
-
+    const current_device = useBreakpoint()
+    const is_sm =  current_device==='sm'||current_device==='base'
     const [isNavOpen, setIsNavOpen] = useState(false);
+
+    const onClose=()=>{
+        if (is_sm) {
+            setIsNavOpen(false)
+        }
+    }
 
     return (
         <>
@@ -39,7 +47,7 @@ const MainLayout = () => {
                 >
 
                     {navItems.map((n, k) => (
-                        <NavItem key={k} href={n.path}>
+                        <NavItem key={k} href={n.path} onClose={onClose}>
                             {n.text}
                         </NavItem>
                     ))}

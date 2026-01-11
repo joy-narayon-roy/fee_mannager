@@ -3,16 +3,25 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "start": "node ./src",
     "cli": "node ./src/cli.js",
     "dev": "nodemon ./src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "NODE_ENV=production pkg ./src/index.js --out-dir build --targets node18-linux-x64,node18-win-x64",
+    "copy-env": "cpx .env.production build/"
+  },
+  "pkg": {
+    "assets": [
+      "./src/public/**/*"
+    ],
+    "scripts": [
+      "node_modules/yargs/**/*"
+    ]
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "cors": "^2.8.5",
     "date-fns": "^4.1.0",
@@ -23,6 +32,8 @@
     "yargs": "^18.0.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.11"
+    "nodemon": "^3.1.11",
+    "cross-env": "^7.0.3",
+    "cpx": "^1.5.0"
   }
 }

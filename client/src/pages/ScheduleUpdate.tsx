@@ -157,86 +157,86 @@ function ScheduleCreate({ exist_schedule, profile }: Props) {
     }
 
     return (
-        <form className="flex flex-row justify-center" onSubmit={handleSubmit} >
-            <div className="mt-5 space-y-6 md:min-w-3xl">
-                {/* Page Header */}
+        <form className="flex flex-col justify-center gap-2 mx-auto md:min-w-2xl pb-5" onSubmit={handleSubmit} >
+            {/* <div className="mt-5 space-y-6 md:min-w-3xl"> */}
+            {/* Page Header */}
+            <div>
+                <h1 className="text-xl font-semibold text-gray-900">
+                    Update Schedule
+                </h1>
+                <p className="text-sm text-gray-500">
+                    Define weekly schedule and timings
+                </p>
+            </div>
+
+            {/* Schedule Info */}
+            <div className="bg-white border border-gray-200 rounded-xl py-2 px-4">
                 <div>
-                    <h1 className="text-xl font-semibold text-gray-900">
-                        Update Schedule
-                    </h1>
-                    <p className="text-sm text-gray-500">
-                        Define weekly schedule and timings
-                    </p>
-                </div>
-
-                {/* Schedule Info */}
-                <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-4">
-                    <div>
-                        <label className="text-sm font-medium text-gray-700">
-                            Schedule Name
-                        </label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={state.name}
-                            onChange={handelInput}
-                            className="mt-1 w-full rounded-lg border outline-none border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                            placeholder="Morning Batch"
-                        />
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                        <input
-                            type="checkbox"
-                            name="is_active"
-                            checked={state.is_active}
-                            onChange={handelInput}
-                            className="h-4 w-4 accent-indigo-600"
-                        />
-                        <span className="text-sm text-gray-700">
-                            Active schedule
-                        </span>
-                    </div>
-                </div>
-
-                {/* Days & Time */}
-                <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-4">
-                    <h2 className="text-sm font-semibold text-gray-800">
-                        Days & Time
-                    </h2>
-
-                    <div className="space-y-3">
-                        {DAYS.map((d) => <ScheduleDayInputRow key={d.key} day={d} selectedDay={state.days.filter(da => da.day === d.key)[0]} addDay={addDay} updateTime={updateTime} removeDay={removeDay} />)}
-                    </div>
-                </div>
-
-                {/* Note */}
-                <div className="bg-white border border-gray-200 rounded-xl p-6">
                     <label className="text-sm font-medium text-gray-700">
-                        Note (optional)
+                        Schedule Name
                     </label>
-                    <textarea
-                        name="note"
-                        value={state.note}
-                        onChange={e => handelInput(e)}
-                        className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
-                        rows={3}
+                    <input
+                        type="text"
+                        name="name"
+                        value={state.name}
+                        onChange={handelInput}
+                        className="mt-1 w-full rounded-lg border outline-none border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Morning Batch"
                     />
                 </div>
 
-                {/* Actions */}
-                <div className="flex justify-end gap-3">
-                    <button type="button" onClick={() => nav(-1)} className="px-4 py-2 rounded-lg border border-gray-300 text-sm">
-                        Cancel
-                    </button>
-                    <button
-                        onClick={handleSubmit}
-                        className="px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700"
-                    >
-                        Save Schedule
-                    </button>
+                <div className="flex items-center gap-3">
+                    <input
+                        type="checkbox"
+                        name="is_active"
+                        checked={state.is_active}
+                        onChange={handelInput}
+                        className="h-4 w-4 accent-indigo-600"
+                    />
+                    <span className="text-sm text-gray-700">
+                        Active schedule
+                    </span>
                 </div>
             </div>
+
+            {/* Days & Time */}
+            <div className="bg-white border border-gray-200 rounded-xl p-4">
+                <h2 className="text-sm font-semibold text-gray-800">
+                    Days & Time
+                </h2>
+
+                <div className="mt-4 flex flex-col gap-2">
+                    {DAYS.map((d) => <ScheduleDayInputRow key={d.key} day={d} selectedDay={state.days.filter(da => da.day === d.key)[0]} addDay={addDay} updateTime={updateTime} removeDay={removeDay} />)}
+                </div>
+            </div>
+
+            {/* Note */}
+            <div className="bg-white border border-gray-200 rounded-xl p-6">
+                <label className="text-sm font-medium text-gray-700">
+                    Note (optional)
+                </label>
+                <textarea
+                    name="note"
+                    value={state.note}
+                    onChange={e => handelInput(e)}
+                    className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                    rows={3}
+                />
+            </div>
+
+            {/* Actions */}
+            <div className="flex justify-end gap-4 px-5">
+                <button type="button" onClick={() => nav(-1)} className="px-4 py-2 rounded-lg border border-gray-300 text-sm">
+                    Cancel
+                </button>
+                <button
+                    onClick={handleSubmit}
+                    className="px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700"
+                >
+                    Save Schedule
+                </button>
+            </div>
+            {/* </div> */}
         </form>
     );
 };

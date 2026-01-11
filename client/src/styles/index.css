@@ -2,11 +2,31 @@
 
 @import "tailwindcss";
 
-@theme {
+/* @theme {
   --font-inter: "Inter", sans-serif;
   --font-popins: "Poppins", sans-serif;
   --color-primary: var(--color-indigo-600);
   --color-primary-hover: var(--color-indigo-700);
+  --color-secondary: var(--color-purple-500);
+  --color-secondary-hover: var(--color-purple-600);
+  --color-background: var(--color-gray-50);
+  --color-border: var(--color-gray-200);
+  --color-text-primary: var(--color-gray-800);
+  --color-text-secondary: var(--color-gray-600);
+  --color-text-muted: var(--color-gray-400);
+  --color-container: var(--color-white);
+  --color-success: var(--color-green-500);
+  --color-success-hover: var(--color-green-600);
+  --color-warning: var(--color-amber-500);
+  --color-warning-hover: var(--color-amber-600);
+  --color-error: var(--color-red-500);
+  --color-error-hover: var(--color-red-600);
+} */
+@theme {
+  --font-inter: "Inter", sans-serif;
+  --font-popins: "Poppins", sans-serif;
+  --color-primary: #4F46E5;
+  --color-primary-hover: #4338CA;
   --color-secondary: var(--color-purple-500);
   --color-secondary-hover: var(--color-purple-600);
   --color-background: var(--color-gray-50);

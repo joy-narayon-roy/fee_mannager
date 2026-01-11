@@ -28,12 +28,12 @@
   width: 0;
   overflow: hidden;
 
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .nav-item {
-  @apply block text-container px-4 py-1 rounded-md;
-  transition: all 0.3s ease-in-out;
+  @apply block text-container px-4 py-1 rounded-md text-left;
+  transition: all 0.2s ease-in-out;
 }
 .nav-item:hover {
   @apply bg-container text-secondary;

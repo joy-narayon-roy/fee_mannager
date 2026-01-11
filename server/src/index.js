@@ -1,16 +1,16 @@
 const dotenv = require("dotenv");
-const yargs = require("yargs/yargs");
-const { hideBin } = require("yargs/helpers");
+// const yargs = require("yargs/yargs");
+// const { hideBin } = require("yargs/helpers");
 const config = require("./config");
 const server = require("./server");
-const argv = yargs(hideBin(process.argv)).option("env_path", {
-  alias: "cp",
-  type: "string",
-  default: ".env",
-  description: "Environment variables file(.env) path",
-}).argv;
+// const argv = yargs(hideBin(process.argv)).option("env_path", {
+//   alias: "cp",
+//   type: "string",
+//   default: ".env",
+//   description: "Environment variables file(.env) path",
+// }).argv;
 dotenv.config({
-  path: argv.env_path || ".env",
+  path: ".env",
   quiet: true,
 });
 

@@ -154,8 +154,8 @@ function ScheduleCreate() {
   }
 
   return (
-    <form className="flex flex-row justify-center" onSubmit={handleSubmit} >
-      <div className="mt-5 space-y-6 md:min-w-3xl">
+    <form className="flex flex-col justify-center gap-2 mx-auto md:min-w-2xl pb-5" onSubmit={handleSubmit} >
+      {/* <div className="mt-5 space-y-6 md:min-w-3xl"> */}
         {/* Page Header */}
         <div>
           <h1 className="text-xl font-semibold text-gray-900">
@@ -167,7 +167,7 @@ function ScheduleCreate() {
         </div>
 
         {/* Schedule Info */}
-        <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-4">
+        <div className="bg-white border border-gray-200 rounded-xl py-2 px-4">
           <div>
             <label className="text-sm font-medium text-gray-700">
               Schedule Name
@@ -182,7 +182,7 @@ function ScheduleCreate() {
             />
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="mt-2 flex items-center gap-3">
             <input
               type="checkbox"
               name="is_active"
@@ -197,14 +197,12 @@ function ScheduleCreate() {
         </div>
 
         {/* Days & Time */}
-        <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-4">
+        <div className="bg-white border border-gray-200 rounded-xl p-4">
           <h2 className="text-sm font-semibold text-gray-800">
             Days & Time
           </h2>
 
-          <div className="space-y-3">
-            {/* <ScheduleDayInputRow key={'sat'} day={{ key: 'sat', label: 'Sat' }} selectedDay={state.days.filter(d => d.day === 'sat')[0]} addDay={addDay} removeDay={removeDay} />
-            <ScheduleDayInputRow key={'sun'} day={{ key: 'sun', label: 'Sun' }} selectedDay={state.days.filter(d => d.day === 'sun')[0]} addDay={addDay} removeDay={removeDay} /> */}
+          <div className="mt-4 flex flex-col gap-2">
             {DAYS.map((d) => <ScheduleDayInputRow key={d.key} day={d} selectedDay={state.days.filter(da => da.day === d.key)[0]} addDay={addDay} updateTime={updateTime} removeDay={removeDay} />)}
           </div>
         </div>
@@ -224,7 +222,7 @@ function ScheduleCreate() {
         </div>
 
         {/* Actions */}
-        <div className="flex justify-end gap-3">
+        <div className="flex justify-end gap-4 px-5">
           <button className="px-4 py-2 rounded-lg border border-gray-300 text-sm">
             Cancel
           </button>
@@ -235,7 +233,7 @@ function ScheduleCreate() {
             Save Schedule
           </button>
         </div>
-      </div>
+      {/* </div> */}
     </form>
   );
 };

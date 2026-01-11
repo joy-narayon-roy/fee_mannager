@@ -7,7 +7,7 @@ export default function Summary() {
     const totalAmount = students.reduce((pre, curr) => pre += curr.fee, 0)
     return (
         <>
-            <div className="flex gap-3">
+            <div className="flex flex-wrap justify-around gap-2 w-fit">
                 <SummaryCard bg="green" label="Student" amount={students.length} icone={<FaGraduationCap />} moreInfoUrl="/student" />
                 <SummaryCard bg="blue" label="Tk/mon" amount={totalAmount} icone={<FaDollarSign />} />
                 <SummaryCard bg="yellow" label="Schdule" amount={profile.totalSchedules} icone={<FaCalendar />} moreInfoUrl="/schedule"/>
