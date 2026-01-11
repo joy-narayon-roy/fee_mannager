@@ -1,0 +1,39 @@
+@import "../../styles/index.css";
+.card {
+  @apply flex flex-col w-fit rounded-md overflow-hidden min-w-48;
+}
+.card_info{
+  @apply flex flex-row items-center justify-between gap-1 p-2;
+}
+.card_info_details{
+  @apply p-2 flex flex-col;
+}
+.card_info_details span:first-child{
+  @apply text-4xl font-semibold pl-1;
+}
+.card_info_icone{
+  @apply text-7xl text-gray-600 opacity-50;
+}
+
+.card_more_info{
+  @apply text-center py-1;
+}
+
+.green {
+  @apply bg-success text-white;
+}
+.green_dark {
+  @apply bg-success-hover text-white;
+}
+.blue {
+  @apply bg-blue-500 text-white;
+}
+.blue_dark {
+  @apply bg-blue-600 text-white;
+}
+.yellow {
+  @apply bg-amber-500 text-white;
+}
+.yellow_dark {
+  @apply bg-amber-600 text-white;
+}

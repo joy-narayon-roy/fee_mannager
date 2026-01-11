@@ -1,0 +1,47 @@
+@import "../../../styles/index.css";
+
+.header {
+  @apply max-h-20 bg-container flex justify-between px-8 py-3 border-b-2 border-border;
+}
+.header-logo {
+  @apply text-3xl;
+}
+.header-logo h1 {
+  @apply text-3xl;
+}
+
+.body {
+  @apply h-[calc(100vh-3.9rem)] flex flex-col md:flex-row;
+}
+
+.body_aside {
+  @apply bg-secondary min-w-52 min-h-full px-1 py-10 text-lg flex flex-col gap-2;
+}
+
+.hide {
+  /* Mobile: collapse vertically */
+  /* @apply h-0 overflow-hidden;
+
+  /* Desktop: slide out horizontally */
+  /* @apply md:-translate-x-full md:w-0 md:min-w-0 md:overflow-hidden; */
+  height: 0;
+  width: 0;
+  overflow: hidden;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-item {
+  @apply block text-container px-4 py-1 rounded-md;
+  transition: all 0.3s ease-in-out;
+}
+.nav-item:hover {
+  @apply bg-container text-secondary;
+}
+.nav-item-active {
+  @apply bg-container text-secondary;
+}
+
+.main {
+  @apply w-full overflow-x-hidden box-border flex flex-col;
+}

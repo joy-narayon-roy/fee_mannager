@@ -1,0 +1,29 @@
+@import "../../styles/index.css";
+.table {
+  @apply flex flex-col w-full rounded-md overflow-hidden;
+}
+.table_header {
+  @apply bg-gray-500 text-gray-100 py-1 px-2;
+}
+.table_header_row {
+  @apply flex;
+}
+.table_header_cell {
+  @apply w-full flex flex-row items-center p-2 justify-between;
+}
+.table_header_cell span {
+  @apply w-full text-left;
+}
+.table_header_cell button {
+  @apply flex flex-col;
+}
+
+.table_body {
+    @apply bg-white text-text-primary py-1 px-2;
+}
+.table_body tr{
+    @apply flex;
+}
+.table_body tr td{
+    @apply w-full bg-red-400;
+}

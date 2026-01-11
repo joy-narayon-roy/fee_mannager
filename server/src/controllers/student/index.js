@@ -119,7 +119,11 @@ async function updateStudent(req, res, next) {
   try {
     const { id } = req.params;
     if (!id || !mongoose.Types.ObjectId.isValid(id) || !req.body) {
-      throw createError("Invalid request!", 400);
+      if (!req.body) {
+        throw createError("No body found!", 400);
+      } else {
+        throw createError("Invalid request ID!", 400);
+      }
     }
     const {
       name,
@@ -222,10 +226,63 @@ async function updateStudent(req, res, next) {
   }
 }
 
+/**
+ *
+ * @param {import('express').Request} req
+ * @param {import('express').Response} res
+ * @param {import('express').NextFunction} next
+ */
+async function updateStudentList(req, res, next) {
+  try {
+    const { id } = req.params;
+    const { add = {}, remove = {} } = req.body;
+
+    const updateStmnt = {};
+    const allowKeys = ["schedules", "fees"];
+
+    if (Object.values(add).length > 0) {
+      updateStmnt.$addToSet = {};
+      Object.entries(add).forEach(([k, v]) => {
+        if (allowKeys.includes(k)) {
+          updateStmnt.$addToSet[k] = v;
+        }
+      });
+      if (Object.keys(updateStmnt.$addToSet) == 0) {
+        delete updateStmnt.$addToSet;
+      }
+    }
+
+    if (Object.values(remove).length > 0) {
+      updateStmnt.$pull = {};
+      Object.entries(remove).forEach(([k, v]) => {
+        if (allowKeys.includes(k)) {
+          updateStmnt.$pull[k] = v;
+        }
+      });
+      if (Object.keys(updateStmnt.$pull) == 0) {
+        delete updateStmnt.$pull;
+      }
+    }
+    if (updateStmnt.$addToSet || updateStmnt.$pull) {
+      const result = await models.Student.updateOne({ _id: id }, updateStmnt);
+      return res.status(result.acknowledged ? 200 : 400).json({
+        msg: result.acknowledged ? "Updated" : "Failed",
+        result,
+      });
+    }
+    res.status(400).json({
+      msg: "Invalid reqest",
+    });
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   getStudents,
   getStudentById,
   createStudent,
   deleteByID,
   updateStudent,
+  updateStudentList,
 };

@@ -6,5 +6,6 @@ router.get("/", controller.student.getStudents);
 router.get("/:id", controller.student.getStudentById);
 router.post("/", controller.student.createStudent);
 router.patch("/:id", controller.student.updateStudent);
+router.put("/:id", controller.student.updateStudentList);
 router.delete("/:id", controller.student.deleteByID);
 module.exports = router;

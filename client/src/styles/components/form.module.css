@@ -1,0 +1,15 @@
+@import "../index.css";
+
+.form {
+  @apply mx-auto mt-5 border-2 border-border bg-white p-4 rounded-lg flex flex-col items-center;
+  min-width: 35rem;
+}
+.form_heading {
+  @apply text-3xl font-medium;
+}
+.form_controle{
+  @apply flex flex-col w-full gap-1.5;
+}
+.form_inputs{
+  @apply w-full;
+}

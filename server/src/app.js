@@ -1,10 +1,9 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const path = require("path");
 const router = require("./routes");
 const { globalErrorHandeler } = require("./middlewares");
-
-const path = require("path");
 
 const app = express();
 

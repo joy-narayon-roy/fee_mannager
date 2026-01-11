@@ -2,6 +2,7 @@ const studentController = require("./student");
 const feeController = require("./fee");
 const paymentController = require("./payment");
 const scheduleController = require("./schedule");
+const profileController = require("./profile");
 
 function notFoundController(req, res, next) {
   return res.status(404).json({
@@ -28,4 +29,5 @@ module.exports = {
   fee: feeController,
   payment: paymentController,
   schedule: scheduleController,
+  profile: profileController,
 };

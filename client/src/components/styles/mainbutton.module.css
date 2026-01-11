@@ -1,0 +1,30 @@
+@import "../../styles/index.css";
+
+.btn {
+  @apply py-2 px-3 inline-block w-full rounded-md text-[1.125rem] bg-gray-100 text-text-secondary;
+}
+.btn:disabled {
+  @apply opacity-60;
+}
+.btn:hover {
+  @apply bg-gray-200 outline-2 outline-text-muted;
+}
+.btn_main {
+  @apply bg-gradient-to-br from-primary to-secondary text-white;
+}
+.btn_main:hover {
+  @apply bg-gradient-to-br from-secondary to-primary text-white outline-2 outline-secondary-hover;
+}
+
+/*
+.btn {
+  @apply py-1.5 px-3 inline-block w-full rounded-md text-[1.125rem] bg-gradient-to-br from-primary to-secondary text-white;
+}
+.btn:hover {
+  @apply bg-gradient-to-br from-secondary to-primary text-white;
+}
+.btn:disabled {
+  @apply opacity-60;
+}
+
+*/

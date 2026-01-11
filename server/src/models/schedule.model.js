@@ -27,7 +27,9 @@ const scheduleSchema = new mongoose.Schema(
           required: true,
           trim: true,
           uppercase: true,
+          // match: /^(1[0-2]|0?[1-9]):[0-5][0-9]\s? (AM|PM)$/i,
           match: /^(1[0-2]|0?[1-9]):[0-5][0-9]\s?(AM|PM)$/i,
+          //  match: /^([01]\d|2[0-3]):[0-5]\d$/,
         },
         end_time: {
           type: String,
@@ -35,6 +37,8 @@ const scheduleSchema = new mongoose.Schema(
           trim: true,
           uppercase: true,
           match: /^(1[0-2]|0?[1-9]):[0-5][0-9]\s?(AM|PM)$/i,
+          // match: /^(1[0-2]|0?[1-9]):[0-5][0-9]\s?(AM|PM)$/i,
+          // match: /^([01]\d|2[0-3]):[0-5]\d$/,
         },
       },
     ],

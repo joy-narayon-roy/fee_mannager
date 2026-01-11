@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  --font-inter: "Inter", sans-serif;
+  --font-popins: "Poppins", sans-serif;
+  --color-primary: var(--color-indigo-600);
+  --color-primary-hover: var(--color-indigo-700);
+  --color-secondary: var(--color-purple-500);
+  --color-secondary-hover: var(--color-purple-600);
+  --color-background: var(--color-gray-50);
+  --color-border: var(--color-gray-200);
+  --color-text-primary: var(--color-gray-800);
+  --color-text-secondary: var(--color-gray-600);
+  --color-text-muted: var(--color-gray-400);
+  --color-container: var(--color-white);
+  --color-success: var(--color-green-500);
+  --color-success-hover: var(--color-green-600);
+  --color-warning: var(--color-amber-500);
+  --color-warning-hover: var(--color-amber-600);
+  --color-error: var(--color-red-500);
+  --color-error-hover: var(--color-red-600);
+}
+
+#root {
+  @apply flex flex-col place-content-between h-screen bg-background text-text-primary;
+}
