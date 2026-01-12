@@ -71,7 +71,7 @@ function Row(props: RowProps) {
     return <div className={`${style.table_row} ${row_class}`}>
         <span>{(!showInfo) ? (schedule.students[0]?.name || 'No Student') : schedule.students[0]?.short_id || 'No Student'} {total_students > 1 && `(+${total_students - 1})`}</span>
         <span>{schedule.students[0]?.class || '-'}</span>
-        <span>{(!showInfo) ? (parseFloat(`${amount / 1000}`).toFixed(2) || '-') : amount || '-'}</span>
+        <span>{(!showInfo) ? (amount || '-') : (parseFloat(`${amount / 1000}`).toFixed(2) || '-')}</span>
         <span>{schedule.days[0]?.start_time || '-'}</span>
         <span>{schedule.days[0]?.end_time || '-'}</span>
     </div>
