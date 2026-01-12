@@ -7,10 +7,12 @@ interface Props {
     className?: string | undefined
     schedules?: Schedule[]
     currentTime?: string
+    showInfo?: boolean
 }
 interface RowProps {
     schedule: Schedule
     bg?: Status
+    showInfo?: boolean
 }
 
 function parseTime(time: string): Date {
@@ -45,7 +47,7 @@ function currentStatus(
 }
 
 function Row(props: RowProps) {
-    const { schedule, bg = "success" } = props
+    const { schedule, bg = "success", showInfo = false } = props
     const amount = schedule.students.reduce((pre, curr) => pre + curr.fee, 0)
     const total_students = schedule.students.length
 
@@ -67,27 +69,27 @@ function Row(props: RowProps) {
     }
 
     return <div className={`${style.table_row} ${row_class}`}>
-        <span>{schedule.students[0]?.name || 'No Student'} {total_students > 1 && `(+${total_students - 1})`}</span>
+        <span>{(!showInfo) ? (schedule.students[0]?.name || 'No Student') : schedule.students[0]?.short_id || 'No Student'} {total_students > 1 && `(+${total_students - 1})`}</span>
         <span>{schedule.students[0]?.class || '-'}</span>
-        <span>{amount || '-'}</span>
+        <span>{(!showInfo) ? (parseFloat(`${amount / 1000}`).toFixed(2) || '-') : amount || '-'}</span>
         <span>{schedule.days[0]?.start_time || '-'}</span>
         <span>{schedule.days[0]?.end_time || '-'}</span>
     </div>
 }
 
 export default function TodayScheduleTable(props: Props) {
-    const { schedules = [], className = '', currentTime = '' } = props
+    const { schedules = [], className = '', currentTime = '', showInfo = false } = props
     return (
         <div className={`${style.table} ${className}`}>
             <div className={style.table_head}>
                 <span>Name</span>
                 <span>Class</span>
-                <span>Amount</span>
+                <span>Rate</span>
                 <span>Start</span>
                 <span>Finish</span>
             </div>
             <div className={style.table_body}>
-                {schedules.map(s => <Row key={s.id} schedule={s} bg={currentStatus(currentTime, s.days[0].start_time, s.days[0].end_time)} />)}
+                {schedules.map(s => <Row key={s.id} schedule={s} bg={currentStatus(currentTime, s.days[0].start_time, s.days[0].end_time)} showInfo={showInfo} />)}
             </div>
         </div>
     )

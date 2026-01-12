@@ -10,6 +10,7 @@ const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 export default function Dashboard() {
     const { profile } = useMainContext()
     const [date, setDate] = useState(new Date())
+    const [showInfo, setShowInfo] = useState(false)
     const currentTime = new Date().toLocaleTimeString("en-US", {
         hour: "2-digit",
         minute: "2-digit",
@@ -44,9 +45,12 @@ export default function Dashboard() {
         {/* Today date section */}
         <LiveDateTime />
 
-        <div className="mx-auto md:w-5xl">
-
-            <TodayScheduleTable schedules={todaySchdules} currentTime={currentTime} className="max-w-4xl" />
+        <div className="mx-auto mt-5 md:w-5xl">
+            <div className="my-2 flex gap-2">
+            <input type="checkbox" checked={showInfo} name="show_info" onChange={() => setShowInfo(p => !p)} />
+            <label htmlFor="show_info">Show Info</label>
+            </div>
+            <TodayScheduleTable schedules={todaySchdules} currentTime={currentTime} className="max-w-4xl" showInfo={showInfo} />
         </div>
         {/* <div className="">
             <h1 className="text-3xl">Today</h1>
