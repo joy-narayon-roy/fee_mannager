@@ -9,7 +9,7 @@ const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 
 export default function Dashboard() {
     const { profile } = useMainContext()
-    const [date, setDate] = useState(new Date('2026-01-18'))
+    const [date, setDate] = useState(new Date())
     const [showInfo, setShowInfo] = useState(false)
     const currentTime = new Date().toLocaleTimeString("en-US", {
         hour: "2-digit",
@@ -31,7 +31,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         const inter = setInterval(() => {
-            setDate(new Date('2026-01-18'))
+            setDate(new Date())
         }, 5000);
 
         return () => {
