@@ -25,7 +25,7 @@ export default defineConfig({
         enabled: true, // allow PWA in dev mode
       },
       manifest: {
-        name: "Fee Manager",
+        name: "Manager",
         short_name: "FMA",
         description: "Manager",
         start_url: "/",
