@@ -9,7 +9,7 @@ const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 
 export default function Dashboard() {
     const { profile } = useMainContext()
-    const [date, setDate] = useState(new Date())
+    const [date, setDate] = useState(new Date('2026-01-18'))
     const [showInfo, setShowInfo] = useState(false)
     const currentTime = new Date().toLocaleTimeString("en-US", {
         hour: "2-digit",
@@ -29,10 +29,9 @@ export default function Dashboard() {
         return stu
     }), currentTime)
 
-
     useEffect(() => {
         const inter = setInterval(() => {
-            setDate(new Date())
+            setDate(new Date('2026-01-18'))
         }, 5000);
 
         return () => {
@@ -40,15 +39,16 @@ export default function Dashboard() {
         }
     }, [])
 
+
     return <>
         <h1 className="text-2xl">Deshboard</h1>
         {/* Today date section */}
         <LiveDateTime />
 
-        <div className="mx-auto mt-5 md:w-5xl">
+        <div className="w-full mx-auto mt-5 md:w-5xl">
             <div className="my-2 flex gap-2">
-            <input type="checkbox" checked={showInfo} name="show_info" onChange={() => setShowInfo(p => !p)} />
-            <label htmlFor="show_info">Show Info</label>
+                <input type="checkbox" checked={showInfo} name="show_info" onChange={() => setShowInfo(p => !p)} />
+                <label htmlFor="show_info">Show Info</label>
             </div>
             <TodayScheduleTable schedules={todaySchdules} currentTime={currentTime} className="max-w-4xl" showInfo={showInfo} />
         </div>

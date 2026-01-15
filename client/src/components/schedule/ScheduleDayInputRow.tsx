@@ -1,5 +1,7 @@
 import type React from "react";
 import type { ScheduleDay } from "../../types/schedule";
+import { calculateDuration } from "../../tools/calculateDuration";
+import { useRef } from "react";
 
 type DayKey = "sat" | "sun" | "mon" | "tue" | "wed" | "thu" | "fri";
 type Day = {
@@ -54,6 +56,8 @@ export default function ScheduleDayInputRow(props: Props) {
         updateTime = () => { }
     } = props
 
+    const inputTag = useRef<HTMLInputElement>(null)
+
     const handelSelect: React.ChangeEventHandler<HTMLInputElement> = (ev) => {
         if (ev.currentTarget.checked) {
             addDay(day.key)
@@ -61,7 +65,7 @@ export default function ScheduleDayInputRow(props: Props) {
             removeDay(day.key)
         }
     }
-
+    const duration = calculateDuration(selectedDay?.start_time, selectedDay?.end_time)
     return (
         <div
             className={`flex flex-wrap items-center justify-between md:justify-start gap-4 p-3 rounded-lg border w-fill
@@ -71,8 +75,9 @@ export default function ScheduleDayInputRow(props: Props) {
                 }`}
         >
             <div className="flex items-center gap-2">
-            {/* Checkbox */}
+                {/* Checkbox */}
                 <input
+                    ref={inputTag}
                     type="checkbox"
                     checked={selectedDay !== undefined}
                     onChange={handelSelect}
@@ -81,7 +86,7 @@ export default function ScheduleDayInputRow(props: Props) {
                 />
 
                 {/* Day */}
-                <div className="w-12 text-sm font-semibold text-gray-700">
+                <div className="w-12 text-sm font-semibold text-gray-700" onClick={() => inputTag.current?.click()}>
                     {day.label}
                 </div>
             </div>
@@ -115,8 +120,8 @@ export default function ScheduleDayInputRow(props: Props) {
                     placeholder="4:00 PM"
                     className="w-32 rounded-md border border-gray-300 px-2 py-1 text-sm disabled:bg-gray-100"
                 />
-            <span className=" text-xs opacity-70"></span>
             </div>
+            <span className="text-xs text-gray-500">{duration}</span>
         </div>
     );
 }

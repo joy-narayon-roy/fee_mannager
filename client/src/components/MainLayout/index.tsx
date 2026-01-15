@@ -26,7 +26,7 @@ const MainLayout = () => {
         <>
             <header className={styles.header}>
                 <div className={styles.headerLogo}>
-                    <h1><Link to="/" className="text-3xl">Fee Manager</Link></h1>
+                    <h1><Link to="/" className="text-3xl">Manager</Link></h1>
                 </div>
 
                 <button

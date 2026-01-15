@@ -1,8 +1,7 @@
 @import "../index.css";
 
 .form {
-  @apply mx-auto mt-5 border-2 border-border bg-white p-4 rounded-lg flex flex-col items-center;
-  min-width: 35rem;
+  @apply md:mx-auto border-2 border-border bg-white p-4 rounded-lg flex flex-col items-center;
 }
 .form_heading {
   @apply text-3xl font-medium;

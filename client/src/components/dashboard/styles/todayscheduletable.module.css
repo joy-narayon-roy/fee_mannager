@@ -4,7 +4,7 @@
   @apply mt-2 w-full rounded-md overflow-hidden text-center flex flex-col gap-1 border-2 border-gray-200;
 }
 .table_head {
-  @apply font-semibold bg-gray-100 p-2 grid grid-cols-5;
+  @apply w-full font-semibold bg-gray-100 p-2 grid grid-cols-5;
 }
 /* .table_head span{
     @apply ;
@@ -13,7 +13,7 @@
   @apply w-full flex flex-col gap-1;
 }
 .table_row {
-  @apply w-full px-5 grid grid-cols-5 gap-1;
+  @apply w-full px-5 grid grid-cols-5 gap-1 items-center;
 }
 
 .table_row span:first-child,
@@ -22,4 +22,7 @@
 }
 .table_row {
   @apply p-2 rounded gap-2;
+}
+.table_footer {
+  @apply w-full font-semibold bg-gray-100 p-2 grid grid-cols-5;
 }

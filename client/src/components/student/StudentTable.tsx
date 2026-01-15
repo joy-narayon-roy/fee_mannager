@@ -126,6 +126,15 @@ export default function StudentTable({ data, onRowClick = () => { } }: Props) {
                                 </td>
                             </tr>
                         ))}
+
+                        <tr className="bg-white shadow-md rounded-lg hover:shadow-lg transition"
+                        >
+                            <td className='px-6 py-4 font-semibold rounded-l-lg'>{" "}</td>
+                            <td className='px-6 py-4'>{" "}</td>
+                            <td className='px-6 py-4'>{" "}</td>
+                            <td className='px-6 py-4'>{" "}</td>
+                            <td className='px-6 py-4 font-semibold rounded-r-lg'>{sortedData.reduce((p, s) => p + s.fee, 0)}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
