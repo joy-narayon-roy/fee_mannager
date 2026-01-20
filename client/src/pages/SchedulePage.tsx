@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import ScheduleCard from '../components/schedule/scheduleCard';
 import { useMainContext } from '../contexts/MainContext/MainContext';
+import MainContainer from '../components/MainContainer';
 
 function SchedulePage() {
     const { profile } = useMainContext()
@@ -8,12 +9,12 @@ function SchedulePage() {
         return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
     });
 
-    
+
 
     return (
-        <div className="mx-2">
+        <MainContainer>
             {/* Page Header */}
-            <div className="flex items-center justify-between max-w-xl">
+            <div className="flex items-center justify-between">
                 <div>
                     <h1 className="text-xl font-semibold text-gray-900">Schedules</h1>
                     <p className="text-sm text-gray-500">
@@ -32,7 +33,7 @@ function SchedulePage() {
                     <ScheduleCard key={schedule.id} schedule={schedule} />
                 ))}
             </div>
-        </div>
+        </MainContainer>
     );
 };
 

@@ -104,9 +104,9 @@ function ScheduleCard({ schedule }: Props) {
                     <Link to={`${schedule.id}`} className="text-indigo-600 hover:text-indigo-700 font-medium">
                         View
                     </Link>
-                    <button className="text-gray-600 hover:text-gray-800">
-                        Edit
-                    </button>
+                    <Link to={`update/${schedule.id}`} className="text-gray-600 hover:text-gray-800">
+                        View
+                    </Link>
                 </div>
             </div>
         </div>

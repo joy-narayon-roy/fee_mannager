@@ -1,11 +1,19 @@
 import LiveDateTime from "../components/LiveDateTime";
 import { useMainContext } from "../contexts/MainContext/MainContext";
-import { Schedule, } from "../models";
+import {  Schedule, } from "../models";
 import { useEffect, useState } from "react";
 import sortBySchedule from "../tools/sortSchedules";
 import TodayScheduleTable from "../components/dashboard/TodayScheduleTable";
 
 const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+
+// function getTodayStudentAndSchedule(profile: Profile) {
+//     const current_schs = profile.students
+//         .filter(s => s.status && s.current_schedule_ref)
+//         .map(s => s.current_schedule_ref)
+//         .filter((s): s is string => typeof s === 'string');
+//     console.log(current_schs.map(s => profile.getScheduleByID(s)))
+// }
 
 export default function Dashboard() {
     const { profile } = useMainContext()
@@ -19,8 +27,11 @@ export default function Dashboard() {
 
 
     const today_day = days[date.getDay()]
+
+    // profile.todayStudentSchedule(today_day)
+
     const todaySchdules = sortBySchedule(profile.schedules.filter(s => {
-        return s.days.filter(d => d.day === today_day).length > 0
+        return s.days.filter(d => d.day === today_day).length > 0 && s.students.length > 0 && s.is_active
     }).map(s => {
         const stu = new Schedule({ ...s })
         stu.id = s.id
@@ -52,28 +63,5 @@ export default function Dashboard() {
             </div>
             <TodayScheduleTable schedules={todaySchdules} currentTime={currentTime} className="max-w-4xl" showInfo={showInfo} />
         </div>
-        {/* <div className="">
-            <h1 className="text-3xl">Today</h1>
-            <div className="overflow-x-auto">
-                <table className="min-w-full border border-gray-200">
-                    <thead className="bg-gray-100">
-                        <tr>
-                            <th className="px-4 py-2 text-left font-semibold text-gray-700">Name</th>
-                            <th className="px-4 py-2 font-semibold text-gray-700 text-center">Class</th>
-                            <th className="px-4 py-2 font-semibold text-gray-700 text-center">Amount</th>
-                            <th className="px-4 py-2 font-semibold text-gray-700 text-center">Start</th>
-                            <th className="px-4 py-2 font-semibold text-gray-700 text-center">End</th>
-                        </tr>
-                    </thead>
-                    <tbody className="space-y-2">
-                        {todaySchdules.map(ts => <ScheduleRow
-                            key={ts.id}
-                            schedule={ts}
-                            bg={currentStatus(currentTime, ts.days[0].start_time, ts.days[0].end_time)}
-                        />)}
-                    </tbody>
-                </table>
-            </div>
-        </div> */}
     </>
 }

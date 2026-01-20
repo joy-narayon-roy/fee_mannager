@@ -70,6 +70,27 @@ class Profile {
   deleteSchedule(schedule_id: string) {
     delete this.#schedules[schedule_id];
   }
+
+  todayStudentSchedule(day: string | undefined) {
+    if (!day) {
+      return Object.values(this.#schedules);
+    }
+    const schdule_ids = [];
+    for (const sid in this.#students) {
+      const student = this.#students[sid];
+      if (student.status === "Active") {
+        schdule_ids.push(student.current_schedule_ref);
+      }
+    }
+
+    for (const sch_id of schdule_ids) {
+      if (!sch_id) {
+        continue;
+      }
+      const sch = this.#schedules[sch_id];
+      console.log(sch);
+    }
+  }
 }
 
 export default Profile;

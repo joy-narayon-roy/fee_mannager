@@ -41,6 +41,9 @@
 .nav-item-active {
   @apply bg-container text-secondary;
 }
+.menuBtn{
+  @apply px-2;
+}
 
 .main {
   @apply w-full overflow-x-hidden box-border flex flex-col;

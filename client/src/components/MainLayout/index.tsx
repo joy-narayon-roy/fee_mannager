@@ -33,7 +33,7 @@ const MainLayout = () => {
                     className={styles.menuBtn}
                     onClick={() => setIsNavOpen(prev => !prev)}
                 >
-                    <HiBars3 size={20} />
+                    <HiBars3 size={25} />
                 </button>
             </header>
 
