@@ -2,6 +2,7 @@ import { IoMdClose } from 'react-icons/io';
 import { Profile, Student } from '../../models';
 import MainButton from '../MainButton';
 import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 type StudentsTableProps = {
     students: Student[];
     profile: Profile;
@@ -10,6 +11,7 @@ type StudentsTableProps = {
 };
 
 export default function StudentsTable({ students, removeStudent = () => { }, addStudnet = () => { }, profile }: StudentsTableProps) {
+    const nav = useNavigate()
     const [showUserInput, setShowUserInput] = useState(false)
     const selectTagRef = useRef<HTMLSelectElement>(null)
     const addBtnClick = () => {
@@ -24,6 +26,10 @@ export default function StudentsTable({ students, removeStudent = () => { }, add
     const handelUserInput = (e: React.FormEvent<HTMLSelectElement>) => {
         addStudnet(e.currentTarget.value)
         setShowUserInput(false)
+    }
+
+    const goToStudent = (sid: string) => {
+        nav(`/student/${sid}`)
     }
     return (
         <div>
@@ -69,10 +75,12 @@ export default function StudentsTable({ students, removeStudent = () => { }, add
                                 key={s.id}
                                 className="border-b border-gray-100 hover:bg-gray-50"
                             >
-                                <td className="px-4 py-3 text-sm text-gray-700">
+                                <td className="px-4 py-3 text-sm text-gray-700" onClick={() => goToStudent(s.id)}
+                                >
                                     {s.short_id}
                                 </td>
-                                <td className="px-4 py-3 text-sm text-gray-800">
+                                <td className="px-4 py-3 text-sm text-gray-800" onClick={() => goToStudent(s.id)}
+                                >
                                     {s.name}
                                 </td>
                                 {/* <td className="px-4 py-3 text-sm text-gray-600">

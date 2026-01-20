@@ -105,7 +105,7 @@ function ScheduleCard({ schedule }: Props) {
                         View
                     </Link>
                     <Link to={`update/${schedule.id}`} className="text-gray-600 hover:text-gray-800">
-                        View
+                        Edit
                     </Link>
                 </div>
             </div>
