@@ -11,7 +11,7 @@ const router = Router();
 const api_router = Router();
 
 api_router.get("/", (_req, res, _next) =>
-  res.status(200).json({ message: "This is api route" })
+  res.status(200).json({ message: "This is api route" }),
 );
 
 api_router.use("/student", student_routes);
