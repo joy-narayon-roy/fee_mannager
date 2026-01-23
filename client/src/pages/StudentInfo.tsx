@@ -50,7 +50,15 @@ export default function StudentInfo() {
                         <h1>Not found</h1>
                 }
 
-                <div className="p-2 mt-5">
+                {/* Student navigation */}
+                {/* TODO: Add navigation */}
+
+                <div className="py-2 flex gap-2">
+                    <button>Schedule</button>
+                    <button>Fee</button>
+                    <button>Payment</button>
+                </div>
+                <div className="py-2">
                     <div className="flex justify-between">
                         <h1 className="text-lg">Schedules</h1>
                         <Link className="bg-green-600 text-white px-4 py-2 rounded-md" to={"/schedule"}>+Add</Link>

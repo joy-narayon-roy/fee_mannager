@@ -4,6 +4,7 @@ import SchduleStudentTable from '../components/schedule/SchduleStudentTable';
 import { FaPen, FaTrash } from "react-icons/fa";
 import type React from "react";
 import req from "../tools/apiRequest";
+import MainContainer from "../components/MainContainer";
 
 export type StudentMini = {
     _id: string;
@@ -77,7 +78,8 @@ function ScheduleDetailsPage() {
     }
 
     return (
-        <div className="space-y-6 md:min-w-4xl my-10 mx-auto">
+        <MainContainer>
+            {/* <div className="space-y-6 min-w-full md:min-w-4xl my-10 mx-auto"> */}
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div>
@@ -140,7 +142,9 @@ function ScheduleDetailsPage() {
 
             {/* Assigned Students */}
             <SchduleStudentTable students={schedule.students || []} addStudnet={addScheduleStudent} removeStudent={removeScheduleStudent} profile={profile} />
-        </div>
+            {/* </div> */}
+        </MainContainer>
+
     );
 };
 

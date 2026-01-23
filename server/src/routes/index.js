@@ -11,7 +11,7 @@ const router = Router();
 const api_router = Router();
 
 api_router.get("/", (_req, res, _next) =>
-  res.status(200).json({ message: "This is api route" })
+  res.status(200).json({ message: "This is api route" }),
 );
 
 api_router.use("/student", student_routes);
@@ -22,6 +22,10 @@ api_router.use("/profile", profile_routes);
 
 router.use("/api", api_router);
 router.get("/health", controller.healthController);
+
+router.get("/.well-known/appspecific/com.chrome.devtools.json", (req, res) => {
+  res.status(200).json({});
+});
 
 router.use((_req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
