@@ -3,6 +3,9 @@ import MainLayout from "./components/MainLayout";
 import { Dashboard, Students, StudentCreate, StudentUpdate, StudentInfo, ScheduleCreate, ScheduleInfo, ScheduleUpdate, Summary, } from "./pages";
 import { MainContextProvider } from "./contexts/MainContext";
 import SchedulePage from "./pages/SchedulePage";
+import StudentSchedule from "./pages/studentPage/StudentSchedule";
+import StudentFee from "./pages/studentPage/StudentFee";
+import StudentPayment from "./pages/studentPage/StudentPayment";
 
 
 export default function App() {
@@ -14,7 +17,11 @@ export default function App() {
             <Route index path="/" element={<Dashboard />} />
             <Route path="/student" element={<Students />} />
             <Route path="/student/create" element={<StudentCreate />} />
-            <Route path="/student/:id" element={<StudentInfo />} />
+            <Route path="/student/:id" element={<StudentInfo />}>
+              <Route index element={<StudentSchedule />} />
+              <Route path="fee" element={<StudentFee />} />
+              <Route path="payment" element={<StudentPayment />} />
+            </Route>
             <Route path="/student/update/:id" element={<StudentUpdate />} />
 
             <Route path="/schedule" element={<><Outlet /></>}>

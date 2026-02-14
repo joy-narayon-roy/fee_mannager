@@ -47,7 +47,7 @@ const studentSchema = new mongoose.Schema(
       index: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 // Auto update current_schedule & enforce only ONE active
@@ -113,9 +113,9 @@ studentSchema.pre(["updateOne", "findOneAndUpdate"], async function () {
 
   const now = new Date();
   if (status === "Active") {
-    this.set({ start_date: now, end_date: null });
+    this.set({ start_date: update.start_date || now, end_date: null });
   } else if (status === "Inactive") {
-    this.set({ end_date: now });
+    this.set({ end_date: update.end_date || now });
   }
 });
 

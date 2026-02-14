@@ -153,7 +153,8 @@ async function updateStudent(req, res, next) {
       updateObj.status = status;
     }
     if (start_date) {
-      updateObj.start_date = start_date;
+      const startDate = new Date(start_date)
+      updateObj.start_date = startDate;
     }
     if (end_date) {
       updateObj.end_date = end_date;

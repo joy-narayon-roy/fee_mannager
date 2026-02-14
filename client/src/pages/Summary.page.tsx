@@ -4,7 +4,7 @@ import { FaCalendar, FaDollarSign, FaGraduationCap } from "react-icons/fa";
 export default function Summary() {
     const { profile } = useMainContext()
     const students = profile.students
-    const totalAmount = students.reduce((pre, curr) => pre += curr.fee, 0)
+    const totalAmount = students.filter(s=>s.status==='Active').reduce((pre, curr) => pre += curr.fee, 0)
     return (
         <>
             <div className="flex flex-wrap justify-around gap-2 w-fit">
