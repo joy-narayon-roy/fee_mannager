@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { Fee, Profile, Schedule, Student } from "../../models";
+import { Fee, Payment, Profile, Schedule, Student } from "../../models";
 
 export interface MainContextType {
   loading?: boolean;
@@ -7,6 +7,7 @@ export interface MainContextType {
   profile: Profile;
   addStudent: (student: Student) => void;
   addFee: (fee: Fee) => void;
+  addPayment: (payment: Payment) => void;
   deleteSchedule: (sch: Schedule) => void;
   addStudentToSchedule: (
     student_id: string,
@@ -28,6 +29,7 @@ const defaultCtx: MainContextType = {
   profile: new Profile(),
   addStudent: () => {},
   addFee: () => {},
+  addPayment: () => {},
   addStudentToSchedule: async () => false,
   removeStudentToSchedule: async () => false,
   deleteSchedule: () => {},

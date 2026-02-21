@@ -2,7 +2,7 @@
 
 .fee_row {
   @apply p-2 rounded-md grid grid-cols-4 gap-1 items-center bg-gray-200;
-  grid-template-columns: 2.5rem 1fr 1rem 5rem auto;
+  grid-template-columns: 2.5rem 1fr 1rem minmax(5.5rem,auto) auto;
   cursor: pointer;
 }
 .pay-btn{

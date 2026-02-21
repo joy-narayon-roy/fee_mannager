@@ -1,11 +1,12 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { MainContext, } from "./MainContext";
-import { Profile, Schedule, Student } from "../../models";
+import { Payment, Profile, Schedule, Student } from "../../models";
 import apiRequest from "../../tools/apiRequest";
 import type { ScheduleType } from "../../types/schedule";
 import type { StudentInterface } from "../../types/student";
 import type { FeeType } from "../../types/fee";
 import Fee from "../../models/fee";
+import type { PaymentType } from "../../types/payment";
 
 interface Props {
     children: ReactNode;
@@ -42,6 +43,14 @@ export const MainContextProvider = ({ children }: Props) => {
     const deleteSchedule = (sch: Schedule) => {
         profile.deleteSchedule(sch.id)
         setProfile(new Profile(profile))
+    }
+    const addPayment = (payment: Payment) => {
+        if (payment) {
+            const newProfile = new Profile(profile)
+            newProfile.addPayments([payment])
+            payment.fees.forEach(f => newProfile.updateFeeById(f.fee, f.amount_applied))
+            setProfile(newProfile)
+        }
     }
 
     const addStudentToSchedule = async (student_id: string, schedule_id: string): Promise<boolean> => {
@@ -86,16 +95,21 @@ export const MainContextProvider = ({ children }: Props) => {
                 const {
                     students: apiStudents = [],
                     schedules: apiSchedules = [],
-                    fees: apiFees = []
+                    fees: apiFees = [],
+                    payments: apiPayments = []
                 } = data
+
 
                 const studentList: Student[] = apiStudents.map((s: StudentInterface) => { return new Student(s) })
                 const scheduleList = apiSchedules.map((s: ScheduleType) => { return new Schedule(s) })
                 const feeList = apiFees.map((f: FeeType) => new Fee(f))
+                const paymentList = apiPayments.map((p: PaymentType) => new Payment(p,))
                 const profileInfo = new Profile()
                 profileInfo.addStudnets(studentList)
                 profileInfo.addSchedules(scheduleList)
                 profileInfo.addFees(feeList)
+                profileInfo.addPayments(paymentList)
+
                 setStudents(studentList.reduce((pre: { [k: string]: Student }, curr: Student) => {
                     pre[curr.id] = curr
                     return pre
@@ -128,6 +142,7 @@ export const MainContextProvider = ({ children }: Props) => {
         addStudent,
         addSchedule,
         addFee,
+        addPayment,
         deleteSchedule,
         addStudentToSchedule,
         removeStudentToSchedule

@@ -112,7 +112,7 @@ export default function FeeInfoTable({ fee, student }: PropsType) {
                     <tfoot>
                         <tr>
                             <td colSpan={3} className="p-2">
-                                <MainButton onClick={goToFee}>Payment</MainButton>
+                                <MainButton onClick={goToFee} disabled={fee?.status === 'Paid'}>Payment</MainButton>
                             </td>
                         </tr>
                     </tfoot>

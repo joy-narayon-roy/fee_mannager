@@ -16,7 +16,7 @@ export default function FeeGroupRow({ fee, mode = 'FEE' }: { fee: Fee, mode?: 'S
             <span onClick={goToFee}><span className={`${style['status']} ${`${style['status']} ${style['status-' + status.toLowerCase()]}`}`}> </span> {' '}{content}</span>
             <span className="text-center" onClick={goToFee}>{student?.class}</span>
             <span className="text-center" onClick={goToFee}>{paid_amount}/{total_amount - discount}</span>
-            <span>
+            <span className="">
                 <Link to={`/payment/pay?fee=${fee.id}&student=${student?.id || ''}`} className={style['pay-btn']}>Pay</Link>
             </span>
         </div>

@@ -39,7 +39,7 @@ export default function Form(props: PropsType) {
             <div className={style.form_inputs}>{children}</div>
             <div className={style.form_controle}>
                 <MainButton disabled={disabled} type="submit">{submitBtnInnerHTML}</MainButton>
-                <ButtonLite disabled={disabled} onClick={onCencel}>Cancel</ButtonLite>
+                <ButtonLite onClick={onCencel}>Cancel</ButtonLite>
             </div>
         </form>
     )
