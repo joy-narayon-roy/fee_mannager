@@ -1,0 +1,48 @@
+import { Fee } from "../../models"
+import FeeGroupRow from "./FeeGroupRow"
+type GroupFeeType = {
+    year: number
+    month: number
+    fees: Fee[]
+}
+interface GroupFeeParams {
+    info: GroupFeeType
+}
+
+
+export default function GroupFee(params: GroupFeeParams) {
+    const { info = { month: 1, year: 2020, fees: [] } } = params
+    const months = [
+        'JAN', 'FAB', 'MAR', 'APR',
+        'MAY', 'JUN', 'JUL', 'AUG',
+        'SEP', 'OCT', 'NOV', 'DEC',
+    ];
+    const summery = info.fees.reduce((p, c) => {
+        p.collected += c.paid_amount
+        p.discount += c.discount
+        p.total += c.total_amount
+        return p
+    }, {
+        collected: 0,
+        discount: 0,
+        total: 0
+    })
+
+    return (
+        <>
+            <div className="mt-2 rounded-md border-2 border-gray-300 overflow-hidden">
+                <h1 className="px-3 py-2 text-center bg-gray-100 text-lg">{months[info.month - 1]}-{info.year}</h1>
+                <div className="px-2 py-2 flex flex-col gap-3">
+                    {info.fees.map(f => <FeeGroupRow key={f.id} fee={f} />)}
+                </div>
+                <div className="px-5 py-1 mt-1 flex gap-5 bg-gray-100 justify-end text-sm text-gray-600">
+                    <span>Collected : {summery.collected}</span>
+                    <span>Discount: {summery.discount}</span>
+                    <span>Total: {summery.total}</span>
+                </div>
+            </div>
+        </>
+    )
+}
+
+export type { GroupFeeType, GroupFeeParams }

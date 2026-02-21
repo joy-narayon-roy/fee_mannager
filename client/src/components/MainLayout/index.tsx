@@ -10,6 +10,8 @@ const MainLayout = () => {
         { text: "Dashboard", path: "/" },
         { text: "Students", path: "/student" },
         { text: "Schedule", path: "/schedule" },
+        { text: "Fee", path: "/fee" },
+        { text: "Payment", path: "/payment" },
         { text: "Summary", path: "/summary" },
     ];
     const current_device = useBreakpoint()

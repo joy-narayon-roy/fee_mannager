@@ -1,4 +1,5 @@
 import Dashboard from './Dashboard';
+
 import Students from './Students';
 import StudentCreate from './StudentCreate';
 import StudentInfo from './StudentInfo';
@@ -8,6 +9,9 @@ import Schedule from './SchedulePage';
 import ScheduleInfo from './ScheduleDetailsPage';
 import ScheduleCreate from './ScheduleCreate';
 import ScheduleUpdate from './ScheduleUpdate';
+
+import FeePage, { FeeCreate, FeeBulkCreate, FeeInfo } from './feePage';
+import PaymentPage, { PaymentPayPage } from './paymentPage';
 
 import Summary from './Summary.page';
 
@@ -20,6 +24,12 @@ export {
     Schedule,
     ScheduleInfo,
     ScheduleCreate,
-    ScheduleUpdate, 
-    Summary
+    ScheduleUpdate,
+    Summary,
+    FeePage,
+    FeeCreate,
+    FeeBulkCreate,
+    FeeInfo,
+    PaymentPage,
+    PaymentPayPage
 }

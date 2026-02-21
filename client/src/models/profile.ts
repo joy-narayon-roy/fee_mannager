@@ -1,29 +1,39 @@
 import Schedule from "./schedule";
 import Student from "./student";
+import Fee from "./fee";
 type Students = {
   [key: string]: Student;
 };
 type Schedules = {
   [key: string]: Schedule;
 };
+type Fees = {
+  [key: string]: Fee;
+};
 
 interface InitialProfileInterface {
   students: Student[];
   schedules: Schedule[];
+  fees: Fee[];
 }
 
 class Profile {
   #students: Students;
   #schedules: Schedules;
+  #fees: Fees;
   constructor(info?: InitialProfileInterface) {
     this.#students = {};
     this.#schedules = {};
+    this.#fees = {};
     if (info) {
       for (const stu of info.students) {
         this.#students[stu.id] = stu;
       }
       for (const sch of info.schedules) {
         this.#schedules[sch.id] = sch;
+      }
+      for (const fe of info.fees) {
+        this.#fees[fe.id] = fe;
       }
     }
   }
@@ -39,6 +49,10 @@ class Profile {
   }
   get totalSchedules(): number {
     return Object.keys(this.#schedules).length;
+  }
+
+  get fees(): Fee[] {
+    return Object.values(this.#fees);
   }
 
   addStudnets(stds: Student[]) {
@@ -59,12 +73,33 @@ class Profile {
     }
   }
 
+  addFees(fees: Fee[]) {
+    fees = fees.sort((a, b) => {
+      if (a.year !== b.year) {
+        return a.year - b.year; // sort by year
+      }
+      return -(a.month - b.month); // same year → sort by month
+    });
+    for (const fee of fees) {
+      fee.profile = this;
+      this.#fees[fee.id] = fee;
+    }
+  }
+
   getStudentByID(id: string): Student | null {
     return this.#students[id] || null;
   }
 
   getScheduleByID(id: string): Schedule | null {
     return this.#schedules[id] || null;
+  }
+
+  getFeeById(id: string): Fee | null {
+    return this.#fees[id];
+  }
+
+  getFeeByStudentId(sid: string): Fee[] {
+    return this.fees.filter((f) => f.student?.id === sid);
   }
 
   deleteSchedule(schedule_id: string) {

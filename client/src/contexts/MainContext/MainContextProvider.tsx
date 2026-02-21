@@ -4,6 +4,8 @@ import { Profile, Schedule, Student } from "../../models";
 import apiRequest from "../../tools/apiRequest";
 import type { ScheduleType } from "../../types/schedule";
 import type { StudentInterface } from "../../types/student";
+import type { FeeType } from "../../types/fee";
+import Fee from "../../models/fee";
 
 interface Props {
     children: ReactNode;
@@ -24,6 +26,14 @@ export const MainContextProvider = ({ children }: Props) => {
             // setStudents((prev) => ({ ...prev, [sid]: stu }));
         }
     };
+
+    const addFee = (fee: Fee) => {
+        if (fee) {
+            const newProfile = new Profile(profile)
+            newProfile.addFees([fee])
+            setProfile(newProfile)
+        }
+    }
     const addSchedule = (sch: Schedule) => {
         if (sch.id) {
             setSchedules(pre => ({ ...pre, [sch.id]: sch }))
@@ -73,13 +83,19 @@ export const MainContextProvider = ({ children }: Props) => {
                 const { data } = await apiRequest.get("/profile", {
                     signal: controller.signal,
                 });
-                const { students: apiStudents = [], schedules: apiSchedules = [] } = data
+                const {
+                    students: apiStudents = [],
+                    schedules: apiSchedules = [],
+                    fees: apiFees = []
+                } = data
 
                 const studentList: Student[] = apiStudents.map((s: StudentInterface) => { return new Student(s) })
                 const scheduleList = apiSchedules.map((s: ScheduleType) => { return new Schedule(s) })
+                const feeList = apiFees.map((f: FeeType) => new Fee(f))
                 const profileInfo = new Profile()
                 profileInfo.addStudnets(studentList)
                 profileInfo.addSchedules(scheduleList)
+                profileInfo.addFees(feeList)
                 setStudents(studentList.reduce((pre: { [k: string]: Student }, curr: Student) => {
                     pre[curr.id] = curr
                     return pre
@@ -111,6 +127,7 @@ export const MainContextProvider = ({ children }: Props) => {
         loading,
         addStudent,
         addSchedule,
+        addFee,
         deleteSchedule,
         addStudentToSchedule,
         removeStudentToSchedule

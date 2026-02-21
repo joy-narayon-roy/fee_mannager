@@ -112,7 +112,7 @@ interface InputGroupSelectProps extends GroupProps {
     name?: string;
     options?: string[] | { [key: string]: string }[];
     defaultValue?: string;
-    onChange?: React.ChangeEventHandler;
+    onChange?: React.ChangeEventHandler<HTMLSelectElement | HTMLInputElement>;
     value?: string | undefined
 }
 
