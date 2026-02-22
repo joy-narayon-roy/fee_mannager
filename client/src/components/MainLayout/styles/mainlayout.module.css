@@ -11,7 +11,7 @@
 }
 
 .body {
-  @apply h-[calc(100vh-3.9rem)] flex flex-col md:flex-row;
+  @apply h-[calc(100dvh-3.9rem)] flex flex-col md:flex-row;
 }
 
 .body_aside {

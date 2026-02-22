@@ -1,6 +1,7 @@
 import { NavLink, Outlet, useParams } from "react-router-dom"
 import { useMainContext } from "../contexts/MainContext/MainContext"
 import StudentProfileCard from "../components/student/StudentProfileCard"
+import MainContainer from "../components/MainContainer";
 
 function StudentTabs() {
     const tabBase =
@@ -54,7 +55,9 @@ export default function StudentInfo() {
 
     return (
         <>
-            <div className="mx-auto my-2 md:min-w-3xl ">
+            <MainContainer>
+
+                {/* <div className="mx-auto my-2 w-full md:max-w-xl "> */}
                 {
                     student ?
                         <StudentProfileCard student={student} />
@@ -62,50 +65,11 @@ export default function StudentInfo() {
                         <h1>Not found</h1>
                 }
 
-                {/* Student navigation */}
-                {/* TODO: Add navigation */}
                 <StudentTabs />
-                {/* <div className="py-2 flex gap-2">
-                    <NavLink
-                        to=""
-                        end
-                        className={({ isActive }) => (isActive ? "bg-red-300" : "")}
-                    >
-                        Schedule
-                    </NavLink>
-
-                    <NavLink
-                        to="fee"
-                        className={({ isActive }) => (isActive ? "bg-red-300" : "")}
-                    >
-                        Fee
-                    </NavLink>
-
-                    <NavLink
-                        to="payment"
-                        className={({ isActive }) => (isActive ? "bg-red-300" : "")}
-                    >
-                        Payment
-                    </NavLink>
-                </div> */}
-                <div className="py-2">
+                <div className="py-2 px-1 bg-white border border-gray-200 rounded-xl">
                     <Outlet />
                 </div>
-                {/* <div className="py-2">
-                    <div className="flex justify-between">
-                        <h1 className="text-lg">Schedules</h1>
-                        <Link className="bg-green-600 text-white px-4 py-2 rounded-md" to={"/schedule"}>+Add</Link>
-                    </div>
-
-                    <div className="">
-                        {schedules.map(schedule => schedule ?
-                            <ScheduleCardRow key={schedule.id} schedule={schedule} active={student?.current_schedule_ref === schedule.id} handelSelectClicked={handelSetCurrent} handelRemoveClicked={handelRemoveSchedule} />
-                            : <></>)}
-
-                    </div>
-                </div> */}
-                {/* {schedules.map(schedule => schedule ? <ScheduleCard schedule={schedule} /> : <></>)} */}
-            </div>
+            </MainContainer>
         </>
     )
 }

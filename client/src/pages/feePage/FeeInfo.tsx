@@ -42,8 +42,7 @@ export default function FeeInfo() {
             <FeeInfoTable fee={fee} student={student} />
             <div className="mt-5 mx-auto w-full md:max-w-2xl">
                 <h1 className="text-center text-3xl">Payments</h1>
-                <div className="mt-2 flex flex-wrap flex-row gap-2">
-
+                <div className="mt-2 flex flex-col md:flex-row flex-wrap gap-2 justify-center">
                     {payments.map(p => <PaymentCard key={p.id} payment={p} />)}
                 </div>
             </div>

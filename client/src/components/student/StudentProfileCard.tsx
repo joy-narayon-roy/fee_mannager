@@ -25,12 +25,12 @@ function StudentProfileCard({ student }: Props) {
                     </span>
                 </div>
 
-                <div>
+                <div className="overflow-hidden w-full max-w-md">
                     <div className=" flex flex-row items-center gap-8">
                         <h1 className="text-xl font-semibold text-gray-900">
                             {student.name}
-
-                        </h1><span
+                        </h1>
+                        <span
                             className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
           ${student.status === "Active"
                                     ? "bg-green-100 text-green-700"

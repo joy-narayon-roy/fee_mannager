@@ -2,6 +2,7 @@ import Schedule from "./schedule";
 import Student from "./student";
 import Fee from "./fee";
 import type Payment from "./payment";
+import { compareDesc } from "date-fns";
 
 type Students = {
   [key: string]: Student;
@@ -150,6 +151,14 @@ class Profile {
     return Object.values(this.#payments).filter(
       (p) => p.fees.map((f) => f.fee === fid)[0],
     );
+  }
+
+  getPaymentByStudentId(sid: string): Payment[] {
+    return Object.values(this.#payments)
+      .filter((p) => {
+        return p.student?.id === sid;
+      })
+      .sort((a, b) => compareDesc(a.date, b.date));
   }
 
   updateFeeById(fid: string, paid_amount?: number) {
