@@ -51,7 +51,7 @@ class Fee {
       "NOV",
       "DEC",
     ];
-    return months[this.month] || "Invalid month!";
+    return months[this.month-1] || "Invalid month!";
   }
 }
 

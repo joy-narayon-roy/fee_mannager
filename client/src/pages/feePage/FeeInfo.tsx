@@ -36,13 +36,14 @@ export default function FeeInfo() {
     const fee = profile.getFeeById(id)
     const student = fee?.student
     const payments = profile.getPaymentsByFeeId(fee?.id || '')
+    const totalPayedAmount = payments.reduce((p, c) => p + (c.amount || 0), 0)
 
     return (
         <>
             <FeeInfoTable fee={fee} student={student} />
             <div className="mt-5 mx-auto w-full md:max-w-2xl">
-                <h1 className="text-center text-3xl">Payments</h1>
-                <div className="mt-2 flex flex-col md:flex-row flex-wrap gap-2 justify-center">
+                <h1 className="text-center text-3xl text-gray-700">Payments - Total: {totalPayedAmount}৳</h1>
+                <div className="mt-2 flex flex-col md:flex-row flex-wrap gap-2 justify-center text-gray-700">
                     {payments.map(p => <PaymentCard key={p.id} payment={p} />)}
                 </div>
             </div>
