@@ -31,8 +31,8 @@ export default function FeePage() {
         <>
             <div className="mx-auto md:min-w-2xl min-w-full">
                 <div className="flex gap-5 my-2 mb-5">
-                    <MainButton onClick={()=>nav('create')} >+Fee</MainButton>
-                    <MainButton onClick={()=>nav('bulkcreate')}>+Bulk fee</MainButton>
+                    <MainButton onClick={() => nav('create')} >+Fee</MainButton>
+                    <MainButton onClick={() => nav('bulkcreate')}>+Bulk fee</MainButton>
                 </div>
                 <h1 className="text-2xl text-center">Fees</h1>
                 <div className="flex flex-col gap-2">

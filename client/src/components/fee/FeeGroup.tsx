@@ -17,6 +17,12 @@ export default function GroupFee(params: GroupFeeParams) {
         'MAY', 'JUN', 'JUL', 'AUG',
         'SEP', 'OCT', 'NOV', 'DEC',
     ];
+
+    const statusSortPoints = {
+        'Unpaid': -1,
+        'Partial': 0,
+        'Paid': 1
+    }
     const summery = info.fees.reduce((p, c) => {
         p.collected += c.paid_amount
         p.discount += c.discount
@@ -33,7 +39,7 @@ export default function GroupFee(params: GroupFeeParams) {
             <div className="mt-2 rounded-md border-2 border-gray-300 overflow-hidden">
                 <h1 className="px-3 py-2 text-center bg-gray-100 text-lg">{months[info.month - 1]}-{info.year}</h1>
                 <div className="px-2 py-2 flex flex-col gap-3">
-                    {info.fees.map(f => <FeeGroupRow key={f.id} fee={f} />)}
+                    {info.fees.sort((a,b)=>statusSortPoints[a.status]-statusSortPoints[b.status]).map(f => <FeeGroupRow key={f.id} fee={f} />)}
                 </div>
                 <div className="px-5 py-1 mt-1 flex gap-5 bg-gray-100 justify-end text-sm text-gray-600">
                     <span>Collected : {summery.collected}</span>
