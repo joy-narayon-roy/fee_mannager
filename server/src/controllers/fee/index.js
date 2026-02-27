@@ -107,6 +107,107 @@ async function createFee(req, res, next) {
  * @param {import('express').Response} res
  * @param {import('express').NextFunction} next
  */
+async function createFeeBulk(req, res, next) {
+  try {
+    if (!req.body) {
+      throw createError("Provide infomation to create fee!", 400);
+    }
+
+    // const { students, year, month, discount = 0 } = req.body;
+    const { students } = req.body;
+
+    if (!Array.isArray(students) || students.length === 0) {
+      throw createError(`Students must be a non-empty array!`);
+    }
+
+    const filterdStudents = students.map((s) => {
+      const student = {
+        id: s.id || null,
+        month: s.month || null,
+        year: s.year || null,
+        discount: s.discount || 0,
+      };
+
+      if (student.id && !mongoose.Types.ObjectId.isValid(student.id)) {
+        return false;
+      }
+
+      if (student.id && student.month && student.year) {
+        return student;
+      }
+      return false;
+    });
+
+    const feeStudents = filterdStudents.reduce((pre, curr) => {
+      pre[curr.id] = curr;
+      return pre;
+    }, {});
+
+    const student_ids = filterdStudents.map((s) => s.id);
+
+    if (student_ids.length == 0) {
+      throw createError("No students found!", 400);
+    }
+
+    const exists_student = await models.Student.find(
+      {
+        _id: {
+          $in: student_ids,
+        },
+      },
+      {
+        fee: 1,
+        status: 1,
+      },
+    );
+
+    if (exists_student.length === 0) {
+      throw createError("Students not found!", 404);
+    }
+
+    const exist_active_students = exists_student.filter(
+      (es) => es.status === "Active",
+    );
+    const date = new Date();
+    const fees = exist_active_students.map((eas) => {
+      const feeStudentInfo = feeStudents[eas.id];
+      if (!feeStudentInfo) {
+        return false;
+      }
+      return new models.Fee({
+        student: eas.id,
+        total_amount: eas.fee,
+        month: feeStudentInfo.month,
+        year: feeStudentInfo.year,
+        discount: Math.abs(parseInt(feeStudentInfo.discount) || 0),
+        createdAt: date,
+        updatedAt: date,
+      });
+    });
+
+    try {
+      const result = await models.Fee.insertMany(fees, {
+        ordered: false,
+      });
+      return res.status(201).json(result);
+    } catch (error) {
+      if (error.results) {
+        return res.status(201).json(error.results);
+        1;
+      }
+      throw createError(error);
+    }
+  } catch (err) {
+    next(err);
+  }
+}
+
+/**
+ *
+ * @param {import('express').Request} req
+ * @param {import('express').Response} res
+ * @param {import('express').NextFunction} next
+ */
 async function updateFee(req, res, next) {
   try {
     const { id } = req.params;
@@ -159,4 +260,11 @@ async function deleteFee(req, res, next) {
   }
 }
 
-module.exports = { getFees, getFeeById, createFee, updateFee, deleteFee };
+module.exports = {
+  getFees,
+  getFeeById,
+  createFee,
+  updateFee,
+  deleteFee,
+  createFeeBulk,
+};
