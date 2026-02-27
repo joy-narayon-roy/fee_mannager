@@ -35,6 +35,12 @@ export const MainContextProvider = ({ children }: Props) => {
             setProfile(newProfile)
         }
     }
+
+    const addFeeBulk = (fees: Fee[]) => {
+        const newProfile = new Profile(profile)
+        newProfile.addFees(fees)
+        setProfile(newProfile)
+    }
     const addSchedule = (sch: Schedule) => {
         if (sch.id) {
             setSchedules(pre => ({ ...pre, [sch.id]: sch }))
@@ -142,6 +148,7 @@ export const MainContextProvider = ({ children }: Props) => {
         addStudent,
         addSchedule,
         addFee,
+        addFeeBulk,
         addPayment,
         deleteSchedule,
         addStudentToSchedule,

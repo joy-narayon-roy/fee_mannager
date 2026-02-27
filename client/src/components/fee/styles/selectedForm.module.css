@@ -1,0 +1,4 @@
+@import "tailwindcss";
+.studentRow {
+  @apply flex flex-row gap-1 items-center bg-white rounded-md border-2 border-gray-300 px-2 py-1;
+}

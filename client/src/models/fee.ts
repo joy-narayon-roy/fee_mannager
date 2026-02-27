@@ -2,6 +2,23 @@ import type { FeeStatus, FeeType } from "../types/fee";
 import type Profile from "./profile";
 import type Student from "./student";
 
+export const Months = {
+  JAN: 1,
+  FAB: 2,
+  MAR: 3,
+  APR: 4,
+  MAY: 5,
+  JUN: 6,
+  JUL: 7,
+  AUG: 8,
+  SEP: 9,
+  OCT: 10,
+  NOV: 11,
+  DEC: 12,
+} as const;
+
+export type MonthKey = keyof typeof Months;
+
 class Fee {
   #id: string;
   year: number;
@@ -51,7 +68,40 @@ class Fee {
       "NOV",
       "DEC",
     ];
-    return months[this.month-1] || "Invalid month!";
+    return months[this.month - 1] || "Invalid month!";
+  }
+
+  static get months(): string[] {
+    return [
+      "JAN",
+      "FAB",
+      "MAR",
+      "APR",
+      "MAY",
+      "JUN",
+      "JUL",
+      "AUG",
+      "SEP",
+      "OCT",
+      "NOV",
+      "DEC",
+    ];
+  }
+  static get monthsWithIndex(): { [key: string]: number } {
+    return {
+      JAN: 1,
+      FAB: 2,
+      MAR: 3,
+      APR: 4,
+      MAY: 5,
+      JUN: 6,
+      JUL: 7,
+      AUG: 8,
+      SEP: 9,
+      OCT: 10,
+      NOV: 11,
+      DEC: 12,
+    };
   }
 }
 

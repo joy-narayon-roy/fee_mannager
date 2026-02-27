@@ -7,6 +7,7 @@ export interface MainContextType {
   profile: Profile;
   addStudent: (student: Student) => void;
   addFee: (fee: Fee) => void;
+  addFeeBulk: (fee: Fee[]) => void;
   addPayment: (payment: Payment) => void;
   deleteSchedule: (sch: Schedule) => void;
   addStudentToSchedule: (
@@ -29,6 +30,7 @@ const defaultCtx: MainContextType = {
   profile: new Profile(),
   addStudent: () => {},
   addFee: () => {},
+  addFeeBulk: () => {},
   addPayment: () => {},
   addStudentToSchedule: async () => false,
   removeStudentToSchedule: async () => false,
