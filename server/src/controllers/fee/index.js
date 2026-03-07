@@ -176,10 +176,11 @@ async function createFeeBulk(req, res, next) {
       }
       return new models.Fee({
         student: eas.id,
-        total_amount: eas.fee,
         month: feeStudentInfo.month,
         year: feeStudentInfo.year,
+        total_amount: eas.fee,
         discount: Math.abs(parseInt(feeStudentInfo.discount) || 0),
+        due_amount: eas.fee - Math.abs(parseInt(feeStudentInfo.discount) || 0),
         createdAt: date,
         updatedAt: date,
       });
