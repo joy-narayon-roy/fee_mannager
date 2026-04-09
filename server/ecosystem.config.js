@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: "fee_mannager",
-      script: "./src",
+      script: "./src/index.js",
     },
   ],
 };
