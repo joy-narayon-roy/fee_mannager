@@ -1,14 +1,8 @@
 const dotenv = require("dotenv");
-// const yargs = require("yargs/yargs");
-// const { hideBin } = require("yargs/helpers");
 const config = require("./config");
 const server = require("./server");
-// const argv = yargs(hideBin(process.argv)).option("env_path", {
-//   alias: "cp",
-//   type: "string",
-//   default: ".env",
-//   description: "Environment variables file(.env) path",
-// }).argv;
+const { default: mongoose } = require("mongoose");
+
 dotenv.config({
   path: ".env",
   quiet: true,
@@ -23,6 +17,8 @@ config
   .then(async (dbConn) => {
     DB_CONNECTION = dbConn;
     console.log(`DB Connected`);
+    console.log("DB Host :", mongoose.connection.host);
+    console.log("DB Name :", mongoose.connection.db.databaseName);
     server.listen(PORT);
   })
   .catch((err) => {

@@ -9,7 +9,8 @@ server.addListener("listening", () => {
   if (server_address.address=='::') {
     server_address.address = 'localhost'
   }
-  console.log(`Server listening. Click http://${server_address.address}:${server_address.port}`);
+  console.log()
+  console.log(`Server listening.\nClick http://${server_address.address}:${server_address.port}`);
 });
 
 server.addListener("error", (err) => {
