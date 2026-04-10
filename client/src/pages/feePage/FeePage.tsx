@@ -35,7 +35,7 @@ export default function FeePage() {
                     <MainButton onClick={() => nav('bulkcreate')}>+Bulk fee</MainButton>
                 </div>
                 <h1 className="text-2xl text-center">Fees</h1>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 mb-5">
                     {groupFees.map(gf => <GroupFee key={`${gf.month}-${gf.year}`} info={gf} />)}
                 </div>
             </div>

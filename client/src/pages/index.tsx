@@ -13,7 +13,7 @@ import ScheduleUpdate from './ScheduleUpdate';
 import FeePage, { FeeCreate, FeeBulkCreate, FeeInfo } from './feePage';
 import PaymentPage, { PaymentPayPage } from './paymentPage';
 
-import Summary from './Summary.page';
+import Summary from './summaryPage';
 
 export {
     Dashboard,
