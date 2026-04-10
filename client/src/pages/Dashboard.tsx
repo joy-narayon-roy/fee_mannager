@@ -52,18 +52,19 @@ export default function Dashboard() {
     }, [])
 
 
-    return (<>
+    return <>
         <MainContainer>
-            <h1 className="text-2xl my-2">Deshboard</h1>
+            <h1 className="text-2xl">Deshboard</h1>
             <LiveDateTime />
-            {/* Today date section */}
+        </MainContainer>
+        {/* Today date section */}
 
-            {/* <div className="w-full mx-auto mt-5 md:w-5xl"> */}
-            <div className="mt-4 mb-2 flex gap-2">
+        <div className="w-full mx-auto mt-5 md:w-5xl">
+            <div className="my-2 flex gap-2">
                 <input type="checkbox" checked={showInfo} name="show_info" onChange={() => setShowInfo(p => !p)} />
                 <label htmlFor="show_info">Show Info</label>
             </div>
-            <TodayScheduleTable schedules={todaySchdules} currentTime={currentTime} showInfo={showInfo} />
-        </MainContainer>
-    </>)
+            <TodayScheduleTable schedules={todaySchdules} currentTime={currentTime} className="max-w-4xl" showInfo={showInfo} />
+        </div>
+    </>
 }
