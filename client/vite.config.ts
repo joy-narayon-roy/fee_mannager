@@ -34,12 +34,13 @@ export default defineConfig({
         theme_color: "#4F46E5",
         icons: [
           {
-            src: "/pwa-192x192.png",
-            sizes: "192x192",
+            // src: "/pwa-192x192.png",
+            src: "/logo_128.png",
+            sizes: "128x128",
             type: "image/png",
           },
           {
-            src: "/pwa-512x512.png",
+            src: "/logo_512.png",
             sizes: "512x512",
             type: "image/png",
           },
