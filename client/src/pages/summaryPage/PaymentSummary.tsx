@@ -1,6 +1,7 @@
 import FeesSummary, { type GroupedFee } from "../../components/summary/FeesSummary";
 import MainContainer from "../../components/MainContainer";
 import { useMainContext } from "../../contexts/MainContext/MainContext";
+import TotalFeesSummary, { type TotalFees } from "../../components/summary/TotalFeesSummary";
 
 
 type GroupFees = {
@@ -53,11 +54,32 @@ export default function PaymentSummary() {
         })
     })
 
+    const detault_total_summary: TotalFees = {
+        discount_amount: 0,
+        paid_amount: 0,
+        total_amount: 0,
+        year: 2025
+
+    }
+
+    const total_summary: TotalFees = profile.fees.reduce((pre, curr): TotalFees => {
+        const new_data: TotalFees = {
+            ...pre,
+            total_amount: pre.total_amount + curr.total_amount,
+            discount_amount: pre.discount_amount + curr.discount,
+            paid_amount: pre.paid_amount + curr.paid_amount,
+            year: curr.year > pre.year ? curr.year : pre.year
+
+        }
+        return new_data
+    }, detault_total_summary)
+
     return (
         <MainContainer className="mt-5">
             <h3 className="text-center text-2xl my-2">Paid</h3>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 mb-10">
                 {income_fees.map(inc_fe => <FeesSummary key={inc_fe.month} info={inc_fe} />)}
+                <TotalFeesSummary info={total_summary} />
             </div>
         </MainContainer>
     )
