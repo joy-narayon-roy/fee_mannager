@@ -19,7 +19,7 @@ config
     console.log(`DB Connected`);
     console.log("DB Host :", mongoose.connection.host);
     console.log("DB Name :", mongoose.connection.db.databaseName);
-    server.listen(PORT);
+    server.listen(PORT, "127.0.0.1");
   })
   .catch((err) => {
     console.log(`DB: ${process.env.MONGODB_URI} (Failed!)`);

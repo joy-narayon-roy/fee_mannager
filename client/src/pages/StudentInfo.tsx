@@ -42,6 +42,15 @@ function StudentTabs() {
             >
                 Payment
             </NavLink>
+
+            <NavLink
+                to="summary"
+                className={({ isActive }) =>
+                    `${tabBase} ${isActive ? tabActive : tabInactive}`
+                }
+            >
+                Summary
+            </NavLink>
         </div>
     );
 };

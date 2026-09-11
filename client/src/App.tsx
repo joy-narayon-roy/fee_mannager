@@ -6,6 +6,7 @@ import SchedulePage from "./pages/SchedulePage";
 import StudentSchedule from "./pages/studentPage/StudentSchedule";
 import StudentFee from "./pages/studentPage/StudentFee";
 import StudentPayment from "./pages/studentPage/StudentPayment";
+import StudentSummary from "./pages/studentPage/StudentSummary";
 
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
               <Route index element={<StudentSchedule />} />
               <Route path="fee" element={<StudentFee />} />
               <Route path="payment" element={<StudentPayment />} />
+              <Route path="summary" element={<StudentSummary />} />
             </Route>
             <Route path="/student/update/:id" element={<StudentUpdate />} />
 

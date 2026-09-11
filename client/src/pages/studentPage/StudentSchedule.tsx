@@ -38,7 +38,7 @@ export default function StudentSchedule() {
     return (
         <div className="py-2">
             <div className="flex justify-between">
-                <h1 className="text-lg">Schedules</h1>
+                <h1 className="text-2xl pl-5">Schedules</h1>
                 <Link className="bg-green-600 text-white px-4 py-2 rounded-md" to={"/schedule"}>+Add</Link>
             </div>
 
