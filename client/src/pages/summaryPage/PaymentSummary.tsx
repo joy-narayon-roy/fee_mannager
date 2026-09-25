@@ -37,7 +37,8 @@ export default function PaymentSummary() {
         if (curr.status === 'Paid' || curr.status === 'Partial') {
             pre[curr.year][curr.month].paid_amount += curr.paid_amount
             pre[curr.year][curr.month].paid_fees = [...pre[curr.year][curr.month].paid_fees, curr]
-        } else {
+        }
+        if (curr.status === 'Unpaid' || curr.status === 'Partial') {
             pre[curr.year][curr.month].unpaid_fees = [...pre[curr.year][curr.month].unpaid_fees, curr]
         }
 

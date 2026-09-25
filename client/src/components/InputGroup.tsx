@@ -89,7 +89,7 @@ export default function InputGroup(props: InputGroupProps) {
             <input
                 name={name}
                 type={type}
-                value={value}
+                value={`${value}`}
                 placeholder={placeholder || "Enter text"}
                 required={required}
                 disabled={disabled}
